@@ -34,12 +34,12 @@
 }(this, function ( document, undefined ) {
 
 
-function Hilitor(id, tag, options)
+function Hilitor(element, tag, options, colorsParam)
 {
-  var targetNode = document.getElementById(id) || document.body;
+  var targetNode = element || document.body;
   var hiliteTag = tag || "EM";
   var skipTags = new RegExp("^(?:SCRIPT|FORM|INPUT|TEXTAREA|IFRAME|VIDEO|AUDIO)$");
-  var colors = ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
+  var colors = colorsParam || ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
   var wordColor = [];
   var colorIdx = 0;
   var matchRegex = "";
