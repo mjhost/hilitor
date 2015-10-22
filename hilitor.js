@@ -34,17 +34,20 @@
 }(this, function(document, undefined) {
 
 
-  function Hilitor(element, tag, options, colorsParam) {
-    var targetNode = element || document.body;
-    var hiliteTag = tag || "EM";
+  function Hilitor(options) {
+    options = options || {};
+
+    var COLORS = ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
+
+    var hiliteTag = options.tag || "EM";
     var skipTags = new RegExp("^(?:SCRIPT|FORM|INPUT|TEXTAREA|IFRAME|VIDEO|AUDIO)$");
-    var colors = colorsParam || ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
+    var colors = options.colors || COLORS;
     var wordColor = [];
     var colorIdx = 0;
     var matchRegex = "";
     var openLeft = true;
     var openRight = true;
-    options = options || {};
+    
     if (typeof options.onStart !== 'function') {
       options.onStart = function() { /* return FALSE when you want to abort */ };
     }
@@ -164,22 +167,31 @@
     };
 
     // start highlighting at target node
-    this.apply = function(input) {
+    this.apply = function(elements,input) {
       // always remove all highlight markers which have been done previously
-      this.remove();
       if (!input) {
         return false;
       }
       this.setRegex(input);
+
+      this.remove();
+
       var rv = options.onStart.call(this);
       if (rv === false) {
         return rv;
       }
+
+      for (var i = elements.length - 1; i >= 0; i--) {
+        var targetNode = elements[i];
+        targetNode.normalize();
+        this.hiliteWords(targetNode);
+      };
+
       // ensure all text node series are merged, etc. so that we don't have to bother with fragmented texts in the search/scan.
-      targetNode.normalize();
-      this.hiliteWords(targetNode);
       return options.onFinish.call(this);
     };
+
+    this.setMatchType(options.matchType);
   }
 
 
