@@ -1,0 +1,22 @@
+{
+  "name": "hilitor",
+  "main": "hilitor.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/e-xtrategy/hilitor",
+  "authors": [
+    "dev@-extrategy.net"
+  ],
+  "description": "Javascript Highlighting",
+  "keywords": [
+    "Javascript",
+    "Highligthing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
