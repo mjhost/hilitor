@@ -81,7 +81,12 @@
     };
 
     this.setRegex = function(input) {
-      input = input.replace(/[^\w0-9\\u ]+/, "").replace(/[ ]+/g, "|");
+      input = input.replace(/[ ]+/g, "|").replace(/\./g,"\\.");
+
+      if(options.stripNumber){
+        input = input.replace(/[^\w0-9\\u ]+/, "");
+      }
+
       var re = "(" + input + ")";
       if (!openLeft) re = "\\b" + re;
       if (!openRight) re = re + "\\b";
