@@ -79,21 +79,21 @@ function Hilitor(element, tag, options, colorsParam)
   };
 
   this.setRegex = function (input)
-  {
-    input = input.replace(/^[^\w]+|[^\w]+$/g, "").replace(/[^\w'\-]+/g, "|");
-    var re = "(" + input + ")";
-    if(!openLeft) re = "\\b" + re;
-    if(!openRight) re = re + "\\b";
-    matchRegex = new RegExp(re, "i");
-  };
+    {
+        input = input.replace(/[^\w0-9\\u ]+/, "").replace(/[ ]+/g, "|");
+        var re = "(" + input + ")";
+        if(!openLeft) re = "\\b" + re;
+        if(!openRight) re = re + "\\b";
+        matchRegex = new RegExp(re, "i");
+    };
 
-  this.getRegex = function ()
-  {
-    var retval = matchRegex.toString();
-    retval = retval.replace(/^\/(\\b)?|(\\b)?\/i$/g, "");
-    retval = retval.replace(/\|/g, " ");
-    return retval;
-  };
+    this.getRegex = function ()
+    {
+        var retval = matchRegex.toString();
+        retval = retval.replace(/^\/(\\b)?|(\\b)?\/i$/g, "");
+        retval = retval.replace(/\|/g, " ");
+        return retval;
+    };
 
   // recursively apply word highlighting
   this.hiliteWords = function (node)
