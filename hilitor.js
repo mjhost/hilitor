@@ -172,7 +172,7 @@
     };
 
     // start highlighting at target node
-    this.apply = function(elements,input) {
+    this.apply = function(input, elements = [document.body]) {
       // always remove all highlight markers which have been done previously
       if (!input) {
         return false;
