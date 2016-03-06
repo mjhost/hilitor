@@ -37,13 +37,11 @@
   function Hilitor(options) {
     options = options || {};
 
-    var COLORS = ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
 
     var hiliteTag = options.tag || "EM";
-    var skipTags = new RegExp("^(?:SCRIPT|FORM|INPUT|TEXTAREA|IFRAME|VIDEO|AUDIO)$");
-    var colors = options.colors || COLORS;
     var hClass = options.hClass || "hilitor";
-    var wordColor = [];
+    var skipTags = new RegExp("^(?:SCRIPT|FORM|INPUT|TEXTAREA|IFRAME|VIDEO|AUDIO)$");
+    var wordN = [];
     var colorIdx = 0;
     var matchRegex = "";
     var openLeft = true;
@@ -111,7 +109,7 @@
         return;
       if (skipTags.test(node.nodeName))
         return;
-      if (node.nodeName === hiliteTag && node.className === hClass)
+      if (node.nodeName === hiliteTag && node.classList.contains(hClass))
         return;
 
       if (node.hasChildNodes()) {
@@ -122,16 +120,12 @@
       if (node.nodeType === 3) { // NODE_TEXT
         if ((nv = node.nodeValue) && (regs = matchRegex.exec(nv))) {
           if (false !== options.onDoOne.call(this, node)) {
-            if (!wordColor[regs[0].toLowerCase()]) {
-              wordColor[regs[0].toLowerCase()] = colors[colorIdx++ % colors.length];
-            }
-
+             if(!wordN[regs[0].toLowerCase()]) {
+            	 wordN[regs[0].toLowerCase()] = ++colorIdx % 12;
+                }
             var match = document.createElement(hiliteTag);
             match.appendChild(document.createTextNode(regs[0]));
-            match.className = hClass;
-            match.style.backgroundColor = wordColor[regs[0].toLowerCase()];
-            match.style.fontStyle = "inherit";
-            match.style.color = "#000";
+            match.className = hClass + " " + (wordN[regs[0].toLowerCase()]);
 
             var after = node.splitText(regs.index);
             after.nodeValue = after.nodeValue.substring(regs[0].length);
