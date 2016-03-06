@@ -42,6 +42,7 @@
     var hiliteTag = options.tag || "EM";
     var skipTags = new RegExp("^(?:SCRIPT|FORM|INPUT|TEXTAREA|IFRAME|VIDEO|AUDIO)$");
     var colors = options.colors || COLORS;
+    var hClass = options.hClass || "hilitor";
     var wordColor = [];
     var colorIdx = 0;
     var matchRegex = "";
@@ -110,7 +111,7 @@
         return;
       if (skipTags.test(node.nodeName))
         return;
-      if (node.nodeName === hiliteTag && node.className === "hilitor")
+      if (node.nodeName === hiliteTag && node.className === hClass)
         return;
 
       if (node.hasChildNodes()) {
@@ -127,7 +128,7 @@
 
             var match = document.createElement(hiliteTag);
             match.appendChild(document.createTextNode(regs[0]));
-            match.className = "hilitor";
+            match.className = hClass;
             match.style.backgroundColor = wordColor[regs[0].toLowerCase()];
             match.style.fontStyle = "inherit";
             match.style.color = "#000";
@@ -144,7 +145,7 @@
     this.remove = function() {
       var arr, i;
       do {
-        arr = document.querySelectorAll(hiliteTag + ".hilitor");
+        arr = document.querySelectorAll(hiliteTag + "." + hClass);
         i = 0;
         while (i < arr.length && (el = arr[i])) {
           // store the reference to the parent of the hilite tag as that node itself, 
