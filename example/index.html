@@ -1,0 +1,224 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Javascript Hihglighting: hilitor example</title>
+<meta name="description" content="Javascript Hihglighting: hilitor example">
+<meta name="author" content="e-motiv.net">
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/main.css" />
+
+<script type="text/javascript" src="../hilitor.js"></script>
+<script type="text/javascript">
+	var myHilitor; // global variable
+	document.addEventListener("DOMContentLoaded", function() {
+		myHilitor = new Hilitor();
+		myHilitor.apply("javascript highlight library");
+	}, false);
+</script>
+
+<link rel="stylesheet" href="../hilitor.css">
+</head>
+<body>
+
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner split">
+			<section>
+				<h2>hilitor</h2>
+				<p>a javascript highlight library</p>
+				<p>This web page is a draft to be finished!</p>
+			</section>
+			<section>
+				<p>Javascript<br><span class="icon fa-github"> 	github project</span></p>
+				<ul class="actions">
+					<li><a href="https://github.com/e-motiv/hilitor" class="button special">Source code</a></li>
+				</ul>
+			</section>
+		</div>
+	</section>
+
+	<!-- One -->
+	<section id="one" class="wrapper">
+		<div class="inner split">
+			<section>
+				<p>If you've arrived here via a search engine you may have noticed that the keywords you searched for appeared highlighted on the landing page.<br>
+				Here is a javascript library that does just that.</p>
+				<ul class="actions vertical">
+					<li><a href="#example" class="button alt">Working example</a></li>
+					<li><a href="#colors" class="button alt">Default colors</a></li>
+					<li><a href="#implement" class="button alt">How to implement</a></li>
+				</ul>
+			</section>
+			<section>
+				<ul class="checklist">
+					<li><strong>Multiple keywords and colors</strong></li>
+					<li>Inverse and spread <strong>color scheme</strong></li>
+					<li>Custom highlight <strong>tag</strong> &nbsp;&nbsp;&nbsp;&nbsp;(default <em>em</em>)</li>
+					<li><strong>Meaningful text nodes</strong> only<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not <em>script, form elements, iframe, media</em>)</li>
+					<li>Marks <strong>parts of words</strong> &nbsp;&nbsp;&nbsp;&nbsp;(Open ended matching)</li>
+					<li>Support for <strong>accented</strong> characters & <strong>UTF-8</strong></li>
+					<li>Customizable <strong>css</strong> styles</li>
+				</ul>
+			</section>
+		</div>
+	</section>
+
+	<!-- Two -->
+	<section id="two" class="wrapper style2 alt">
+		<div class="inner">
+			<div class="spotlight">
+				<div class="content">
+					<h3>Dummy text.</h3>
+					<p>This is some dummy text.<br>Javascript highlighting library this is. Hhighlighting with javascript is very easy. This library is not using jquery.<br> Is there a better library for highlighting? Let me know below!</p>
+					<p>This is some dummy text.<br>Javascript highlighting library this is. Hhighlighting with javascript is very easy. This library is not using jquery.<br> Is there a better library for highlighting? Let me know below!</p>
+				</div>
+				<div id="example" class="content">
+					<h3>Working example</h3>
+					<p>Enter some keywords in the box below and click [Apply]. Words in the page content that match the words you've entered will be instantly highlighted:</p>
+
+					<form method="GET" action="/javascript/search-highlight/" onsubmit="myHilitor.apply(hilite.value); return false;">
+						<fieldset>
+							<legend class="actions">Highlight Words</legend>
+							<label>Keywords</label><span><input type="text" size="32" name="hilite" value="javascript highlight library" ><br><input type="submit" value="Apply"> <input type="button" value="Remove" onclick="myHilitor.remove();"></span>
+						</fieldset>
+					</form>
+
+				</div>
+			</div>
+			<div class="spotlight">
+				<div id="colors" class="content">
+
+					<h3>Colors</h3>
+					
+					<p>The colors were chosen as far as possible from eachother for each next keyword (<strong>inverse</strong>), while staying <strong>spread</strong> around the color spectrum.
+					
+				</div>
+				<div id="colors" class="content">
+					<h4>Default colors</h4>
+					<p>
+						<span class="hilitor 0">Color 1</span> and
+						<span class="hilitor 1">color 2</span> and
+						<span class="hilitor 2">color 3</span> and
+						<span class="hilitor 3">color 4</span> and<br>
+						<span class="hilitor 4">color 5</span> and
+						<span class="hilitor 5">color 6</span> and
+						<span class="hilitor 6">color 7</span> and
+						<span class="hilitor 7">color 8</span> and<br>
+						<span class="hilitor 8">color 9</span> and
+						<span class="hilitor 9">color 10</span> and
+						<span class="hilitor 10">color 11</span> and
+						<span class="hilitor 11">color 12</span>
+					</p>
+				</div>
+			</div>
+			<div class="spotlight">
+				<div id="implement" class="content" style="width:auto; margin:0 10%">
+
+					<h3>How to implement</h3>
+
+					<p>First we take the form input (e.g. &quot;search engine keywords&quot;) and convert it into a JavaScript regular expression (e.g. &quot;/\b(search|engine|keywords)\b/&quot;). This regular expression will match any of the entered words where they appear in the content area of the page.</p>
+
+					<p>In practice what we do is generate this keywords to highlight using the search engine referer string, and also exclude common stop words such as 'is', 'and', 'are', etc, but that's another story.</p>
+
+					<p>Here is the code we use to call the highlighting function:</p>
+
+					<pre><code class="final">
+&lt;script type="text/javascript" src="hilitor.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+	// global variable
+	var myHilitor;
+	document.addEventListener("DOMContentLoaded", function() {
+		myHilitor = new Hilitor();
+		myHilitor.apply("javascript highlight library");
+	}, false);
+&lt;/script	
+					</code></pre>
+
+					<p>
+						The first line creates an instance of the
+						<tt>Hilitor</tt>
+						class, specifying that the area to be scanned is the
+						<tt>#content</tt>
+						element on the page. If we don't supply a valid element id then the script will scan
+						<tt>document.body</tt>
+						, but it's better to limit it to just your content area to avoid highlighting appearing in the page header, menu or footer.
+					</p>
+
+					<p>
+						The tag used by default to apply highlighting to matched words is the
+						<tt>EM</tt>
+						(emphasis) tag. We can change that if we want by passing a second parameter with a different tag name. You can use any tag that renders <em>inline</em> - so not a
+						<tt>DIV</tt>
+						or similar block element which would break the layout.
+					</p>
+
+					<p>
+						Calling the
+						<tt>apply</tt>
+						method passes the words to be highlighted to the just instantiated object which traverses the DOM inside the selected node looking for text that matches any of the keywords.
+					</p>
+
+					<p>When a match is found, the text node in question is split up and a tag with style settings applied to the matching words. Each word is assigned a colour from the array supplied in the script which is then used throughout the document for that word.</p>
+
+					<p>To remove the highlighting from the page we simply call (from a link, script or button):</p>
+
+					<pre><code class="final">
+&lt;script type=&quot;text/javascript&quot;&gt; myHilitor.remove(); &lt;/script&gt;</code></pre>
+
+					<p>If the colours used for highlighting look familiar, it's because they were copied from a now outdated version of Google Cache View.</p>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact -->
+	<section id="contact" class="wrapper">
+		<div class="inner split">
+			<section>
+				<h2>Not yet working contact</h2>
+				<p>Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis pellentesque eget.</p>
+				<form action="#" class="alt" method="POST">
+					<div class="row uniform">
+						<div class="6u 12u$(xsmall)">
+							<input name="name" placeholder="Name" type="text">
+						</div>
+						<div class="6u$ 12u$(xsmall)">
+							<input name="email" placeholder="Email" type="email">
+						</div>
+						<div class="12u$">
+							<textarea name="message" placeholder="Message" rows="4" style="width:100%"></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input class="alt" value="Send message" type="submit"></li>
+					</ul>
+				</form>
+			</section>
+			<section>
+				<ul class="contact">
+					<li class="fa-github"><a href="https://github.com/e-motiv/hilitor" target="_blank">github.com/e-motiv/hilitor</a></li>
+					<li class="fa-bookmark"><a href="http://attic.e-motiv.net" target="_blank">Other projects on my attic</a></li>	
+					<li class="fa-code-fork"><a href="https://github.com/e-xtrategy/hilitor" target="_blank">github.com/e-xtrategy/hilitor</a></li>
+					<li class="fa-code-fork"><a href="https://github.com/GerHobbelt/hilitor" target="_blank">github.com/GerHobbelt/hilitor</a></li>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="copyright">
+			&copy;<br>Hilitor library. 2016, <a href="http://www.chirp.com.au/" target="_blank">Chirp Internet</a> - All rights reserved.
+- <a href="http://www.the-art-of-web.com/copyright.html">License</a><br>
+			Design: <a href="http://templated.co">TEMPLATED</a>.
+		</div>
+	</footer>
+
+</body>
+</html>
