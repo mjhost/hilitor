@@ -11,5 +11,6 @@ Text highlighting anywhere in the HTML/DOM. (JavaScript: Search Keyword Highligh
 ## Documentation
 
 See http://e-motiv.github.io/hilitor/example/ for documentation and examples
+
 See http://www.the-art-of-web.com/javascript/search-highlight/ for the older documentation and examples.
 
