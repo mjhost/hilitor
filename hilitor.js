@@ -185,7 +185,7 @@
         var targetNode = elements[i];
         targetNode.normalize();
         this.hiliteWords(targetNode);
-      };
+      }
 
       // ensure all text node series are merged, etc. so that we don't have to bother with fragmented texts in the search/scan.
       return options.onFinish.call(this);
