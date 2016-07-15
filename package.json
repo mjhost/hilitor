@@ -20,8 +20,9 @@
   },
   "contributors":[
     {"name":"Ger Hobbelt", "email":"ger@hobbelt.com"},
-    {"name":"", "email":"dev@-extrategy.net"},
-    {"name":"Paolo Mariotti", "email":"paolo.mariotti@sourcesense.com"}
+    {"name":"Francesco Strazzullo", "email":"me@francescostrazzullo.info"},
+    {"name":"Ruben", "email":"Ruben@e-motiv.net"},
+    {"name":"Paolo", "email":"paolo.mariotti@sourcesense.com"}
   ],
   "license": "MIT",
   "bugs": {
