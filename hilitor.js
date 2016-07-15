@@ -167,7 +167,10 @@
     };
 
     // start highlighting at target node
-    this.apply = function(input, elements = [document.body]) {
+    this.apply = function(input, elements) {
+      if(!elements){
+        elements = [document.body];
+      }
       // always remove all highlight markers which have been done previously
       if (!input) {
         return false;
