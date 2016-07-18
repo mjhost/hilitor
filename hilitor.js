@@ -136,10 +136,13 @@
     };
 
     // remove highlighting
-    this.remove = function() {
+    this.remove = function(element) {
       var arr, i;
+      if(!element){
+        element = document;
+      }
       do {
-        arr = document.querySelectorAll(hiliteTag + "." + hClass);
+        arr = element.querySelectorAll(hiliteTag + "." + hClass);
         i = 0;
         while (i < arr.length && (el = arr[i])) {
           // store the reference to the parent of the hilite tag as that node itself,
@@ -177,7 +180,11 @@
       }
       this.setRegex(input);
 
-      this.remove();
+
+      elements.forEach(function(element){
+        this.remove(element);
+      }, this);
+
 
       var rv = options.onStart.call(this);
       if (rv === false) {
