@@ -109,7 +109,9 @@
         return;
       if (skipTags.test(node.nodeName))
         return;
-      if (node.nodeName === hiliteTag && node.classList.contains(hClass))
+      if (node.nodeName === hiliteTag && node.classList && node.classList.contains(hClass))
+        return;
+      if (node.nodeName === hiliteTag && node.className.split(" ").indexOf(hClass) >= 0)
         return;
 
       if (node.hasChildNodes()) {
